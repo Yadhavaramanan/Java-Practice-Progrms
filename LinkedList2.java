@@ -84,6 +84,37 @@ class LinkedList{
 		    
 		    return true;
 		}
+		
+		public boolean insertNodeMid(int val, int key){
+		     Node newNode = new Node(val);
+		     if(!isEmpty() && Head.link!=null){
+		        
+		        boolean notFound = true;
+		        Node currNode = Head;
+		        Node prev = null;
+		        while(currNode != null){
+		            if(currNode.data==key){
+		                if(prev==null){
+		                    insertNodeStart(val);
+		                    notFound = false;
+		                    return true;
+		                }else{
+		                    newNode.link = currNode;
+		                    prev.link = newNode;
+		                    notFound = false;
+		                    return true;
+		                }
+		            }
+		            
+		            prev = currNode;
+		            currNode = currNode.link;
+		        }
+		    
+		    }else{
+		        return false;
+		    }
+		  return true;
+		}
 
 }
 public class Main
@@ -125,7 +156,11 @@ public class Main
 	    System.out.println("-".repeat(50));
 	    
 	    ll.insertNodeStart(5);
-	    	    ll.traverseLL();
+	    ll.traverseLL();
+	    
+	    System.out.println("-".repeat(50));
+	    ll.insertNodeMid(15,20);
+	    ll.traverseLL();
 
 	}
 	
