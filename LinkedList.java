@@ -32,5 +32,33 @@ public class Main
 		System.out.println("n4--"+n4+" :"+n4.data+"-->"+n4.link);
 		System.out.println("-".repeat(50));
 		System.out.println(n1.data+"-->"+n1.link.data+"-->"+n1.link.link.data+"-->"+n1.link.link.link.data+"-->"+n1.link.link.link.link);
+	
+	    System.out.println("-".repeat(50));
+	    
+	    Node tempNode = n1;
+	    System.out.println(tempNode.data);
+	    
+	    tempNode = tempNode.link;
+	    System.out.println(tempNode.data);
+	    
+	    tempNode = tempNode.link;
+	    System.out.println(tempNode.data);
+	    
+	    tempNode = tempNode.link;
+	    System.out.println(tempNode.data);
+	    
+	    tempNode = tempNode.link;
+	    System.out.println(tempNode);
+	    
+	    System.out.println("-".repeat(50));
+	    tempNode = n1;
+	    while(tempNode !=null){
+	        System.out.print(tempNode.data+"-->");
+	        tempNode = tempNode.link;
+	    }
+	    System.out.print(tempNode+"\n");
+	    
+	    System.out.println("-".repeat(50));
 	}
+	
 }
