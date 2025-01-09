@@ -69,6 +69,21 @@ class LinkedList{
 		    
 		    return true;
 		}
+		
+		public boolean insertNodeStart(int val){
+		    Node newNode = new Node(val);
+		    if(isEmpty()){
+		        Head = newNode;
+		    }
+		    else
+		    {
+		    newNode.link = Head;
+		    Head = newNode;
+		    
+		    }
+		    
+		    return true;
+		}
 
 }
 public class Main
@@ -105,7 +120,13 @@ public class Main
 	    
 	    System.out.println("-".repeat(50));
 	    
-	    System.out.print("Res: "+(ll.getLastNode()).data);
+	    System.out.print("Res: "+(ll.getLastNode()).data+"\n");
+	    
+	    System.out.println("-".repeat(50));
+	    
+	    ll.insertNodeStart(5);
+	    	    ll.traverseLL();
+
 	}
 	
 }
