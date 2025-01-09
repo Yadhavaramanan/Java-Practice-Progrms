@@ -29,29 +29,29 @@ class LinkedList{
 	    
 		public void traverseLL(){
 		     Node tempNode = Head;
+		     if(isEmpty()){
+		        System.out.println("LinkedList is Empty...");
+		    }
+		    else
+		    {
 	         while(tempNode !=null){
 	                System.out.print(tempNode.data+"-->");
 	                tempNode = tempNode.link;
 	              }
 	        System.out.print(tempNode+"\n");
+		    }
 	        
 		}
 		
 		public Node getLastNode(){
 		    Node tempNode = Head;
-		    if(isEmpty()){
-		        System.out.println("LinkedList is Empty...");
-		    }
-		    else
-		    {
 	        while(tempNode.link !=null){
 	                System.out.print(tempNode.data+"-->");
 	                tempNode = tempNode.link;
 	              }
 	        System.out.print("Res: "+tempNode.data);
 	        System.out.println();
-	        
-		    }
+	       
 	        return tempNode;
 		    }
 		    
@@ -69,10 +69,7 @@ class LinkedList{
 		    
 		    return true;
 		}
-		
-		
-	    //System.out.println("-".repeat(50));
-		
+
 }
 public class Main
 {
@@ -81,7 +78,6 @@ public class Main
 	    LinkedList ll = new LinkedList();
 	    
 	    ll.traverseLL();
-	    ll.getLastNode();
 	    System.out.println("-".repeat(50));
 	    
 	    ll.insertNodeEnd(10);
@@ -98,6 +94,9 @@ public class Main
 	    ll.traverseLL();
 	    
 	    ll.insertNodeEnd(50);
+	    ll.traverseLL();
+	    
+	    ll.insertNodeEnd(60);
 	    ll.traverseLL();
 	    
 	    System.out.println("-".repeat(50));
