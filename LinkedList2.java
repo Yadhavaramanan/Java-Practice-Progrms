@@ -4,164 +4,239 @@ class Node{
     int data;
     Node link;
     
-    
     Node(int val){
         data = val;
         link = null;
-        
     }
 }
 
 class LinkedList{
-        Node Head;
-		
-	LinkedList(){
-	    Head = null;
-	}
-	
-	    public boolean isEmpty(){
-	        if(Head == null){
-	            return true;
-	        }else{
-	            return false;
-	        }
-	    }
-	    
-		public void traverseLL(){
-		     Node tempNode = Head;
-		     if(isEmpty()){
-		        System.out.println("LinkedList is Empty...");
-		    }
-		    else
-		    {
-	         while(tempNode !=null){
-	                System.out.print(tempNode.data+"-->");
-	                tempNode = tempNode.link;
-	              }
-	        System.out.print(tempNode+"\n");
-		    }
-	        
-		}
-		
-		public Node getLastNode(){
-		    Node tempNode = Head;
-	        while(tempNode.link !=null){
-	                System.out.print(tempNode.data+"-->");
-	                tempNode = tempNode.link;
-	              }
-	        System.out.print("Res: "+tempNode.data);
-	        System.out.println();
-	       
-	        return tempNode;
-		    }
-		    
-		public boolean insertNodeEnd(int val){
-		    Node newNode = new Node(val);
-		    if(isEmpty()){
-		        Head = newNode;
-		    }
-		    else
-		    {
-		    Node LastNode = getLastNode();
-		    LastNode.link = newNode;
-		    
-		    }
-		    
-		    return true;
-		}
-		
-		public boolean insertNodeStart(int val){
-		    Node newNode = new Node(val);
-		    if(isEmpty()){
-		        Head = newNode;
-		    }
-		    else
-		    {
-		    newNode.link = Head;
-		    Head = newNode;
-		    
-		    }
-		    
-		    return true;
-		}
-		
-		public boolean insertNodeMid(int val, int key){
-		     Node newNode = new Node(val);
-		     if(!isEmpty() && Head.link!=null){
-		        
-		        boolean notFound = true;
-		        Node currNode = Head;
-		        Node prev = null;
-		        while(currNode != null){
-		            if(currNode.data==key){
-		                if(prev==null){
-		                    insertNodeStart(val);
-		                    notFound = false;
-		                    return true;
-		                }else{
-		                    newNode.link = currNode;
-		                    prev.link = newNode;
-		                    notFound = false;
-		                    return true;
-		                }
-		            }
-		            
-		            prev = currNode;
-		            currNode = currNode.link;
-		        }
-		    
-		    }else{
-		        return false;
-		    }
-		  return true;
-		}
+    Node Head;
+    
+    LinkedList(){
+        Head = null;
+    }
+    
+    public boolean isEmpty(){
+        if(Head == null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public boolean insertStartNode(int val){
+        Node newNode = new Node(val);
+        if(isEmpty()){
+            Head=newNode; 
+        }else{
+            newNode.link = Head;
+            Head = newNode;
+        }
+        
+        return true;
+    }
+    
+    public Node getNodeEnd(){
+        Node tempNode = Head;
+        while(tempNode.link!=null){
+                System.out.print(tempNode.data + "-->");
+                tempNode = tempNode.link;
+            }
+            
+        return tempNode;
+    }
+    
+    public boolean insertNodeMid(int val, int key) {
+    Node newNode = new Node(val);
+    
+    if (isEmpty()) {
+        return false; 
+    }
+    if (Head.data == key) {
+        newNode.link = Head;
+        Head = newNode;
+        return true;
+    }
+    Node currNode = Head;
+    Node prev = null;
+    while (currNode != null) {
+        if (currNode.data == key) {
+            newNode.link = currNode;
+            if (prev != null) {
+                prev.link = newNode;
+            }
+            return true;
+        }
+        prev = currNode;
+        currNode = currNode.link;
+    }
 
+    return false;
 }
+
+    public boolean insertNodeEnd(int  val){
+        Node newNode = new Node(val);
+        if(isEmpty()){
+            Head = newNode;
+        }else{
+            Node LastNode = getNodeEnd();
+            LastNode.link = newNode;
+        }
+        return true;
+    }
+    
+    public boolean deleteNodeStart(){
+        if(isEmpty()){
+            return false;
+        }else{
+            Head = Head.link;
+            return true;
+        }
+    }
+    
+    public boolean deleteNodeMid(int key) {
+    if (isEmpty()) {
+        return false; 
+    }
+    if (Head.data == key) {
+        Head = Head.link; 
+        return true;
+    }
+    Node current = Head;
+    Node prev = null;
+
+    while (current != null) {
+        if (current.data == key) {
+            prev.link = current.link;
+            return true;
+        }
+        prev = current;
+        current = current.link;
+    }
+
+    return false;
+}
+
+    
+    public boolean deleteNodeEnd(){
+        if(isEmpty()){
+			return false;
+		}else{
+			Node tempNode = Head;
+			Node prev = null;
+			while(tempNode.link != null){
+				prev = tempNode;
+				tempNode = tempNode.link;
+			}
+			if(prev == null){
+				Head = null;
+				return true;
+			}else{
+				prev.link = null;
+				return true;
+			}
+    }
+    }
+    
+    public boolean traverse(){
+        Node tempNode = Head;
+        if(isEmpty()){
+            System.out.println("LinkedList is Empty...");
+        }else{
+            while(tempNode!=null){
+                System.out.print(tempNode.data + "-->");
+                tempNode = tempNode.link;
+            }
+            System.out.print(tempNode+"\n");
+        }
+       return true;     
+     }
+     
+    public boolean searchNode(int key) {
+    Node current = Head;
+    while (current != null) {
+        if (current.data == key) {
+            return true; 
+        }
+        current = current.link; 
+    }
+
+    return false; 
+    }
+
+     
+    public void reverse() {
+    Node prev = null;
+    Node next = null;
+    Node current = Head;
+
+    while (current != null) {
+        next = current.link;  
+        current.link = prev; 
+        prev = current;       
+        current = next;       
+    }
+    Head = prev;  
+    }
+
+    
+}
+
 public class Main
 {
 	public static void main(String[] args) {
-		
-	    LinkedList ll = new LinkedList();
+	    Scanner sc =new Scanner(System.in);
+	    LinkedList l = new LinkedList();
 	    
-	    ll.traverseLL();
-	    System.out.println("-".repeat(50));
+	    l.traverse();
 	    
-	    ll.insertNodeEnd(10);
-	    ll.traverseLL();
+	    l.insertStartNode(10);
+	    l.traverse();
 	    
+	    l.getNodeEnd();
 	    
-	    ll.insertNodeEnd(20);
-	    ll.traverseLL();
+	    l.insertNodeEnd(20);
+	    l.traverse();
 	    
-	    ll.insertNodeEnd(30);
-	    ll.traverseLL();
+	    l.insertNodeEnd(25);
+	    l.traverse();
 	    
-	    ll.insertNodeEnd(40);
-	    ll.traverseLL();
+	    l.insertNodeEnd(30);
+	    l.traverse();
 	    
-	    ll.insertNodeEnd(50);
-	    ll.traverseLL();
+	    l.insertNodeEnd(35);
+	    l.traverse();
 	    
-	    ll.insertNodeEnd(60);
-	    ll.traverseLL();
+	    l.insertNodeEnd(40);
+	    l.traverse();
 	    
-	    System.out.println("-".repeat(50));
+	    l.insertNodeEnd(45);
+	    l.traverse();
 	    
-	    ll.getLastNode();
+	    l.insertNodeEnd(50);
+	    l.traverse();
 	    
-	    System.out.println("-".repeat(50));
+	    l.insertNodeMid(15,20);
+	    l.traverse();
 	    
-	    System.out.print("Res: "+(ll.getLastNode()).data+"\n");
+	    l.deleteNodeStart();
+	    l.traverse();
 	    
-	    System.out.println("-".repeat(50));
+	    l.deleteNodeMid(15);
+	    l.traverse();
 	    
-	    ll.insertNodeStart(5);
-	    ll.traverseLL();
+	    l.deleteNodeEnd();
+	    l.traverse();
 	    
-	    System.out.println("-".repeat(50));
-	    ll.insertNodeMid(15,20);
-	    ll.traverseLL();
-
+	    l.searchNode(45);
+	    l.traverse();
+	    
+	    l.reverse();
+	    l.traverse();
+	    
+	    l.insertNodeMid(15,20);
+	    l.traverse();
+	    
 	}
-	
 }
