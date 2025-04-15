@@ -1,0 +1,50 @@
+import java.util.*;
+// Prim's MST Algorithm
+class Edge{
+    int v,w;
+    Edge(int v,int w){
+        this.v = v;
+        this.w = w;
+    }
+}
+public class Main{
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int V = sc.nextInt();
+		int E = sc.nextInt();
+		ArrayList<ArrayList<Edge>> graph = new ArrayList<>();
+		for(int i=0 ; i<V ; i++){
+		    graph.add(new ArrayList<Edge>());
+		}
+		for(int i=0 ; i<E ; i++){
+		    int s = sc.nextInt();
+		    int d = sc.nextInt();
+		    int w = sc.nextInt();
+		    graph.get(s).add(new Edge(d,w));
+		    graph.get(d).add(new Edge(s,w));
+		}
+		int min_cost = Prims_Algorithm(V,E,graph);
+		System.out.println(min_cost);
+	}
+	public static int Prims_Algorithm(int V,int E,ArrayList<ArrayList<Edge>> graph){
+	    PriorityQueue<Edge> pq = new PriorityQueue<>((a,b)->a.w-b.w);
+	    boolean visited[] = new boolean[V];
+	    pq.offer(new Edge(6,0));
+	    int min_cost = 0;
+	    while(!pq.isEmpty()){
+	        Edge temp = pq.poll();
+	        int s = temp.v;
+	        if(visited[s]){
+	            continue;
+	        }
+	        visited[s] = true;
+	        min_cost += temp.w;
+	        for(Edge e : graph.get(s)){
+	            if(visited[e.v] == false){
+	                pq.offer(new Edge(e.v,e.w));
+	            }
+	        }
+	    }
+	    return min_cost;
+	}
+}
