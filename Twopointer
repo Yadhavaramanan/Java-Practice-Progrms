@@ -15,24 +15,22 @@ public class Main
 	
 		System.out.println(list);
 	}
-		public ArrayList<Integer> TwoPointer(int[] arr, int T){
-		    int left =0;
-		    int right = arr.length-1;
-		    ArrayList<Integer> list=new ArrayList<>();
+		public ArrayList<Integer> TwoPointer(int[] arr, int target){
+		    int left = 0, right = arr.length-1;
+		    ArrayList<Integer> l = new ArrayList();
 		    while(left<right){
-		       int currentSum = arr[left]+arr[right];
-		       
-		       if(currentSum == T){
-		           list.add(left);
-		           list.add(right);
-		          break;
-		       }else if(currentSum < T){
-		           left++;
-		    }else{
-		        right--;;
+		        int sum = arr[left]+arr[right];
+		        
+		        if(sum == target){
+		            l.add(arr[left]);
+		            l.add(arr[right]);
+		            break;
+		        }else if(sum < target){
+		            left++;
+		        }else{
+		            right--;
+		        }
 		    }
-		    }
-		    return list;
+		    return l;
 		}
-	
 }
