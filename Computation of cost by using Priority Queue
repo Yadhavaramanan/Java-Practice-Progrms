@@ -1,0 +1,22 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    int[] arr = {7,6,8,6,1,1};
+	    Queue<Integer> p = new PriorityQueue<>();
+	    for(int i : arr){
+	        p.offer(i);
+	    }
+	    int sum = 0;
+	    while(p.size()>1){
+	        int a = p.poll();
+	        int b = p.poll();
+	        sum += a+b;
+	        p.offer(a+b);
+	    }
+	    
+	    System.out.print(sum);
+	    
+	}
+}
