@@ -3,7 +3,11 @@ public class Main
 {
 	public static void main(String[] args) {
 	    Scanner sc = new Scanner(System.in);
-	    int[] arr = {7,6,8,6,1,1};
+	    int n = sc.nextInt();
+	    int[] arr = new int[n];
+	    for(int i=0;i<n;i++){
+	        arr[i] = sc.nextInt();
+	    }
 	    Queue<Integer> p = new PriorityQueue<>();
 	    for(int i : arr){
 	        p.offer(i);
