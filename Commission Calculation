@@ -1,0 +1,52 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter parent member name: ");
+        String parent = sc.nextLine();
+        System.out.print("Do they have children? (Y/N): ");
+        String hasChildren = sc.nextLine().toUpperCase();
+
+        if (hasChildren.equals("N")) {
+            return;
+        }
+        System.out.print("Enter child names separated by comma: ");
+        String[] childNames = sc.nextLine().split(",");
+        List<String> children = new ArrayList<>();
+
+        for (String name : childNames) {
+            if (!name.trim().isEmpty()) {
+                children.add(name.trim());
+            }
+        }
+
+        int numChildren = children.size();
+        if (numChildren == 0) return; 
+
+        int totalMembers = 1 + numChildren;
+        int parentCommission = 500 * numChildren;
+
+        System.out.println("\nTotal members: " + totalMembers);
+        System.out.println("COMMISSION DETAILS");
+        System.out.println(parent + ": " + parentCommission + " INR");
+
+        for (String child : children) {
+            System.out.println(child.toUpperCase() + ": 250INR");
+        }
+
+        sc.close();
+    }
+}
+
+Input and Output:
+Enter parent member name: Amit
+Do they have children? (Y/N): y
+Enter child names separated by comma: Virat, Rajesh, Ram
+
+Total members: 4
+COMMISSION DETAILS
+Amit: 1500 INR
+VIRAT: 250INR
+RAJESH: 250INR
+RAM: 250INR
