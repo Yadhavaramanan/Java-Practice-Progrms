@@ -1,0 +1,33 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        char catego = sc.next().toUpperCase().charAt(0);  
+        int itemNum = sc.nextInt(); 
+
+        String[][] Menu = {
+            { "Espresso Coffee", "Cappuccino Coffee", "Latte Coffee" },
+            { "Plain Tea", "Assam Tea", "Ginger Tea", "Cardamom Tea", "Masala Tea", "Lemon Tea", "Green Tea", "Organic Darjeeling Tea" },
+            { "Hot and Sour Soup", "Veg Corn Soup", "Tomato Soup", "Spicy Tomato Soup" },
+            { "Hot Chocolate Drink", "Badam Drink", "Badam-Pista Drink" }
+        };
+
+        int index = -1;
+        switch(catego) {
+            case 'C': index = 0; break;
+            case 'T': index = 1; break;
+            case 'S': index = 2; break;
+            case 'B': index = 3; break;
+            default: index = -1;
+        }
+
+        if (index != -1 && itemNum >= 1 && itemNum <= Menu[index].length) {
+            String itemName = Menu[index][itemNum - 1];
+            System.out.println("Welcome to CCD!");
+            System.out.println("Enjoy your " + itemName + "!");
+        } else {
+            System.out.println("INVALID OPTION!");
+        }
+    }
+}
