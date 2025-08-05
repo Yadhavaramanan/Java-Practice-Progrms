@@ -10,7 +10,6 @@ public class Main
 		}
 		InsertionSort(arr, n);
 	}
-	
 	public static void InsertionSort(int[] arr, int n){
 	    for(int i=1;i<n;i++){
 	        int key = arr[i];
