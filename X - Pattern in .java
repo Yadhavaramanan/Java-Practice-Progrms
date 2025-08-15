@@ -20,3 +20,13 @@ public class Main
 		scan.close();
 	}
 }
+Input:
+silent
+
+Output:
+s    t
+ i  n 
+  le  
+  le  
+ i  n 
+s    t
